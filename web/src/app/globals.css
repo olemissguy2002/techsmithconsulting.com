@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+html, body { height: 100%; }
+/* --- A. Subtle animated gradient --- */
+@keyframes gradientShift {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+.bg-animated {
+  background-image:
+    radial-gradient(40% 40% at 20% 10%, rgba(59,130,246,0.15), transparent 60%),
+    radial-gradient(30% 30% at 80% 20%, rgba(99,102,241,0.12), transparent 60%),
+    radial-gradient(30% 30% at 30% 80%, rgba(16,185,129,0.12), transparent 60%),
+    radial-gradient(20% 20% at 80% 80%, rgba(234,179,8,0.10), transparent 60%);
+  background-size: 200% 200%;
+  animation: gradientShift 18s ease-in-out infinite;
+  filter: saturate(1.05);
+}
+
+/* --- B. Optional ultra-subtle noise overlay for depth --- */
+.bg-noise::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 .015 .03 .04 .05 .06 .07 .08 .09 .1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .65; pointer-events: none;
+}
