@@ -1,6 +1,37 @@
+# Node/ Next.js
 node_modules
 .next
 .out
-.DS_Store
+out/
+dist/
 .env*
 npm-debug.log*
+*.log
+!.env.example
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+venv/
+venvs/
+ENV/
+env/
+*.ipynb_checkpoints/
+
+# Docker
+
+*.tar
+*.img
+*.pid
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
