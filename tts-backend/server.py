@@ -1,4 +1,8 @@
-# tts-backend/server.py
+import os
+os.environ.setdefault("OMP_NUM_THREADS", "8")
+os.environ.setdefault("MKL_NUM_THREADS", "8")
+import torch
+torch.set_num_threads(8)
 import os, time, uuid, shutil
 from typing import Optional, Dict
 from fastapi import FastAPI, UploadFile, File, Form
@@ -6,15 +10,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 import numpy as np
 import soundfile as sf
-from chatterbox.tts import ChatterboxTTS
 
 OUT_DIR = "/app/out"
 os.makedirs(OUT_DIR, exist_ok=True)
-
-sessions: Dict[str, dict] = {}
-
-print("Loading Chatterbox (CPU)…")
-model = ChatterboxTTS.from_pretrained(device="cpu")
 
 app = FastAPI()
 app.add_middleware(
@@ -28,6 +26,19 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+sessions: Dict[str, dict] = {}
+_model = None
+_sr = None
+
+def get_model():
+    global _model, _sr
+    if _model is None:
+        # Lazy import + load so the server can start immediately
+        from chatterbox.tts import ChatterboxTTS
+        _model = ChatterboxTTS.from_pretrained(device="cpu")
+        _sr = _model.sr
+    return _model, _sr
 
 def _new_sid(given: Optional[str]) -> str:
     return given or str(uuid.uuid4())
@@ -46,6 +57,10 @@ def _save_wav(path, tensor, sr):
     data = tensor.squeeze().detach().cpu().numpy().astype(np.float32)
     sf.write(path, data, sr)
 
+@app.get("/health")
+def health():
+    return {"ok": True, "model_loaded": _model is not None}
+
 @app.post("/synthesize")
 async def synthesize(
     text: str = Form(...),
@@ -54,6 +69,7 @@ async def synthesize(
 ):
     _cleanup_stale()
     sid = _new_sid(session_id)
+
     if sid in sessions:
         old = sessions[sid]["path"]
         if os.path.exists(old):
@@ -65,11 +81,11 @@ async def synthesize(
         with open(prompt_path, "wb") as f:
             shutil.copyfileobj(voice_prompt.file, f)
 
+    model, sr = get_model()
     wav = model.generate(text, audio_prompt_path=prompt_path)
     out_path = os.path.join(OUT_DIR, f"{sid}.wav")
-    _save_wav(out_path, wav, model.sr)
+    _save_wav(out_path, wav, sr)
     sessions[sid] = {"path": out_path, "ts": time.time()}
-
     return {"session_id": sid, "play_url": f"/play/{sid}"}
 
 @app.get("/play/{sid}")

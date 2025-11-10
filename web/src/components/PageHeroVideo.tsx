@@ -39,7 +39,13 @@ export default function PageHeroVideo({
     return () => media.removeEventListener?.("change", apply);
   }, []);
 
-  const base = `/videos/${folder}`;
+  const encodePath = (value: string) =>
+    value
+      .split("/")
+      .map((segment) => encodeURIComponent(segment.trim()))
+      .join("/");
+
+  const base = `/videos/${encodePath(folder)}`;
 
   return (
     <section

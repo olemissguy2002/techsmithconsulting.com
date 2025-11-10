@@ -33,6 +33,9 @@ export default function Nav() {
             <Link href="/case-studies" className="text-sm lg:text-base text-white hover:text-[#37CC97] transition">
               Case Studies
             </Link>
+            <Link href="/ai-portfolio" className="text-sm lg:text-base text-white hover:text-[#37CC97] transition">
+              AI Portfolio
+            </Link>
             <Link href="/about" className="text-sm lg:text-base text-white hover:text-[#37CC97] transition">
               About
             </Link>
@@ -90,6 +93,13 @@ export default function Nav() {
                 onClick={() => setOpen(false)}
               >
                 Case Studies
+              </Link>
+              <Link
+                href="/ai-portfolio"
+                className="text-base text-white hover:text-[#37CC97] transition"
+                onClick={() => setOpen(false)}
+              >
+                AI Portfolio
               </Link>
               <Link
                 href="/about"

@@ -2,6 +2,39 @@ import Image from "next/image";
 import Link from "next/link";
 import PageHeroVideo from "@/components/PageHeroVideo";
 
+const studies = [
+  {
+    title: "Medicaid Optimization Program",
+    summary: "Scaled an eligibility and payment platform to handle seasonal surges without compromising accuracy.",
+    bullets: [
+      "Advanced load / soak testing paired with observability deep dives",
+      "Automated regression harness to replay real-world traffic",
+      "Achieved a 70% performance boost while cutting infra spend 30%",
+    ],
+    href: "/case-studies/medicaid_optimization",
+  },
+  {
+    title: "DEA CI/CD & Security Hardening",
+    summary: "Modernized releases for sensitive investigative workloads with policy-as-code and zero-trust guardrails.",
+    bullets: [
+      "Blended DevSecOps platform with STIG-based baselines",
+      "Integrated policy gates into multi-stage pipelines",
+      "Reduced deployment risk while maintaining velocity",
+    ],
+    href: "/case-studies/dea",
+  },
+  {
+    title: "NASA Content Delivery System",
+    summary: "Built a resilient data platform to move telemetry, science packets, and immersive training assets worldwide.",
+    bullets: [
+      "Designed distributed caching and replication",
+      "Established repeatable release governance",
+      "3D gamified geo-referencing exercises for students",
+    ],
+    href: "/case-studies/nasa",
+  },
+];
+
 export default function CaseStudiesPage() {
   return (
     <main>
@@ -36,59 +69,55 @@ export default function CaseStudiesPage() {
 
       <section className="container mx-auto px-6 md:px-10 lg:px-16 py-12 md:py-16 text-gray-200">
         <div className="space-y-10">
-          <h2 className="text-3xl font-semibold text-white mb-4">Our Work</h2>
-          <p className="text-gray-300 max-w-3xl">
-            These case studies highlight where disciplined DevSecOps, secure automation, and AI-driven insights 
-            produced measurable results.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#37CC97] transition-colors space-y-3">
-              <h3 className="text-xl font-semibold text-white">Medicaid Optumization</h3>
-              <ul className="list-disc pl-5 text-white space-y-1">
-                <li>Designed and implemented robust load and stress testing.</li>
-                <li>Implemented deep dive analysis along with monitoring of stress/load testing.</li>
-                <li>Achieved a <strong className="text-[#37CC97]">70% increase</strong> in performance.</li>
-              </ul>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#37CC97] transition-colors space-y-3">
-              <h3 className="text-xl font-semibold text-white">DEA CI/CD and Security Hardening</h3>
-              <ul className="list-disc pl-5 text-white space-y-1">
-                <li>Implemented DevSecOps for software development platform.</li>
-                <li>Integrated policy gates into CI/CD pipelines.</li>
-                <li>Reduced deployment risk while maintaining velocity.</li>
-              </ul>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#37CC97] transition-colors space-y-3">
-              <h3 className="text-xl font-semibold text-white">NASA Content Delivery System</h3>
-              <ul className="list-disc pl-5 text-white space-y-1">
-                <li>Designed and implemented distibuted system.</li>
-                <li>Established repeatable release governance.</li>
-                <li>Developed and implemented 3D gaming inspired geo-referencing exercises.</li>
-              </ul>
-            </div>
+          <div className="space-y-4 max-w-3xl">
+            <h2 className="text-3xl font-semibold text-white">Our Work</h2>
+            <p className="text-gray-300">
+              These case studies highlight where disciplined DevSecOps, secure automation, and AI-driven insights
+              produced measurable results. Dive deeper into each engagement below.
+            </p>
           </div>
 
-          {/* Placeholder for future child pages */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {studies.map((study) => (
+              <Link
+                key={study.title}
+                href={study.href}
+                className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#37CC97] transition-colors space-y-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#37CC97]/60"
+              >
+                <div>
+                  <p className="text-xs uppercase tracking-[0.35em] text-[#37CC97]/70">Case Study</p>
+                  <h3 className="text-xl font-semibold text-white mt-2">{study.title}</h3>
+                  <p className="text-sm text-gray-300 mt-2">{study.summary}</p>
+                </div>
+                <ul className="list-disc pl-5 text-white space-y-1">
+                  {study.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+                <span className="inline-flex items-center text-sm font-semibold text-[#37CC97]">
+                  Read the full story →
+                </span>
+              </Link>
+            ))}
+          </div>
+
           <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#37CC97] transition-colors">
-            <h3 className="text-xl font-semibold text-white mb-4">Coming Soon</h3>
+            <h3 className="text-xl font-semibold text-white mb-4">Bring Your Mission Next</h3>
             <p className="text-gray-400 mb-4">
-              Each case study will have its own page with deeper technical and business details.
+              Have a similarly complex program or modernization effort? We can tailor an on-site intensive, targeted assessment, or POC to accelerate value.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link
-                href="#"
-                className="px-4 py-2 rounded-lg border border-white/20 text-white hover:text-[#37CC97] hover:border-[#37CC97] transition-colors text-sm"
-              >
-                View All Case Studies
-              </Link>
               <Link
                 href="/contact"
                 className="px-4 py-2 rounded-lg border border-white/20 text-white hover:text-[#37CC97] hover:border-[#37CC97] transition-colors text-sm"
               >
                 Start a Conversation
+              </Link>
+              <Link
+                href="/services"
+                className="px-4 py-2 rounded-lg border border-white/20 text-white hover:text-[#37CC97] hover:border-[#37CC97] transition-colors text-sm"
+              >
+                Explore Services
               </Link>
             </div>
           </div>
