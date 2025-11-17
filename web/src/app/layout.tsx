@@ -3,7 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ChatWidget from "@/components/ChatWidget";
+// import ChatWidget from "@/components/ChatWidget";
 
 
 const SITE_NAME = "TechSmith Consulting";
@@ -29,10 +29,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
        
         {children}
-        <ChatWidget />
+        {/* <ChatWidget /> */}
         <Footer />
       </body>
     </html>
   );
 }
-
