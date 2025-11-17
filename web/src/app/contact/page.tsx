@@ -46,9 +46,18 @@ export default function ContactPage() {
                   <span className="text-gray-400">Email: </span>
                   <a
                     className="underline hover:no-underline hover:text-[#37CC97] transition-colors"
-                    href="mailto:hello@techsmithconsulting.com"
+                    href="mailto:sales@techsmithconsulting.com"
                   >
-                    hello@techsmithconsulting.com
+                    sales@techsmithconsulting.com
+                  </a>
+                </p>
+                <p>
+                  <span className="text-gray-400">Phone: </span>
+                  <a
+                    className="underline hover:no-underline hover:text-[#37CC97] transition-colors"
+                    href="tel:+16015656970"
+                  >
+                    1+(601) 565-6970
                   </a>
                 </p>
                 <p>

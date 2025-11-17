@@ -55,7 +55,7 @@ export default function HeroVideo() {
         </h1>
 
         <p className="text-base sm:text-lg md:text-xl text-gray-200 drop-shadow max-w-2xl mx-auto mb-6 sm:mb-7 md:mb-8">
-          Custom - Affordable AI, Cloud, and Web Solutions
+          Custom AI, Cloud, and Web Solutions
         </p>
 
         <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
