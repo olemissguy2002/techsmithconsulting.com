@@ -17,6 +17,126 @@ const focusAreas = [
   },
 ];
 
+const cloudOfferings = [
+  {
+    title: "Strategy & Readiness",
+    sections: [
+      {
+        heading: "Cloud business cases",
+        bullets: [
+          "Total cost models, savings projections, and ROI narratives.",
+          "Roadmaps that sequence quick wins, migrations, and modernization.",
+          "Executive-ready materials for approvals and funding cycles.",
+        ],
+      },
+      {
+        heading: "Landing zone assessments",
+        bullets: [
+          "Scorecards for identity, networking, logging, and compliance.",
+          "Gap remediation plans with prioritized control implementation.",
+          "Reference architectures tailored to regulated workloads.",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Migration & Modernization",
+    sections: [
+      {
+        heading: "App & data migrations",
+        bullets: [
+          "Portfolio rationalization and wave planning.",
+          "Refactor vs. rehost playbooks with automation pipelines.",
+          "Data estate migrations (warehouses, lakes, analytics).",
+        ],
+      },
+      {
+        heading: "Legacy modernization",
+        bullets: [
+          "Containerization, serverless rewrites, and event-driven patterns.",
+          "Strangler patterns with blue/green and canary deployment strategies.",
+          "Mainframe or ERP integration via APIs and managed services.",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Platform Engineering",
+    sections: [
+      {
+        heading: "Developer experience",
+        bullets: [
+          "Golden paths with scaffolding CLIs and automated guardrails.",
+          "Internal developer portals with service catalogs and scorecards.",
+          "Self-service environment provisioning with policy-as-code.",
+        ],
+      },
+      {
+        heading: "Infrastructure automation",
+        bullets: [
+          "Terraform/CDK libraries with versioning and testing.",
+          "GitOps pipelines (Argo, Flux) and deployment choreographies.",
+          "Reusable patterns for data, ML, and integration workloads.",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Operations & Reliability",
+    sections: [
+      {
+        heading: "SRE enablement",
+        bullets: [
+          "SLI/SLO design and error-budget policies.",
+          "Observability platforms covering logs, metrics, traces, and RUM.",
+          "Incident command training, tabletop exercises, and chaos testing.",
+        ],
+      },
+      {
+        heading: "Managed operations",
+        bullets: [
+          "24/7 runbooks for patching, scaling, and backup validation.",
+          "Cost, performance, and capacity reviews with actionable backlogs.",
+          "On-call augmentation with automated escalation workflows.",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Security & Compliance",
+    sections: [
+      {
+        heading: "Governance & controls",
+        bullets: [
+          "Identity, network, and data-control baselines mapped to frameworks.",
+          "Policy-as-code enforcement plus drift alerting.",
+          "Audit evidence automation for FedRAMP, HIPAA, CJIS, and more.",
+        ],
+      },
+      {
+        heading: "Threat detection",
+        bullets: [
+          "Cloud-native SIEM tuning and runbooks.",
+          "Automated incident response for key workloads.",
+          "Vulnerability management tied to risk scoring and patch SLAs.",
+        ],
+      },
+    ],
+  },
+  {
+    title: "FinOps & Optimization",
+    sections: [
+      {
+        bullets: [
+          "Unit-cost KPIs with tagging strategies and anomaly alerts.",
+          "Reserved capacity and savings-plan optimization.",
+          "Chargeback models, showback dashboards, and executive reporting.",
+        ],
+      },
+    ],
+  },
+];
+
 export default function CloudServicesPage() {
   return (
     <main>
@@ -48,6 +168,32 @@ export default function CloudServicesPage() {
       />
 
       <section className="container mx-auto px-6 md:px-10 lg:px-16 py-12 md:py-16 space-y-10 text-gray-200">
+        <div className="space-y-6">
+          <p className="text-sm uppercase tracking-[0.3em] text-[#37CC97]/80">Offerings</p>
+          <h2 className="text-3xl font-semibold text-white">Cloud programs we run end-to-end</h2>
+          <ol className="list-decimal pl-6 text-gray-300 space-y-6">
+            {cloudOfferings.map((category) => (
+              <li key={category.title} className="space-y-2">
+                <p className="text-xl font-semibold text-white">{category.title}</p>
+                <div className="space-y-3">
+                  {category.sections.map((section) => (
+                    <div key={`${category.title}-${section.heading ?? "general"}`} className="space-y-1">
+                      {section.heading && <p className="font-semibold text-white">{section.heading}</p>}
+                      <ul className="list-disc pl-6 space-y-1">
+                        {section.bullets.map((bullet) => (
+                          <li key={`${category.title}-${section.heading ?? "general"}-${bullet}`} className="text-gray-300">
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
         <div className="grid gap-8 md:grid-cols-[1.2fr_0.8fr]">
           <div className="space-y-6">
             <p className="text-sm uppercase tracking-[0.3em] text-[#37CC97]/80">Mission-ready cloud</p>
