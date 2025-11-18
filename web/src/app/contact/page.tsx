@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";   // <-- Needed for Calendly
 import PageHeroVideo from "@/components/PageHeroVideo";
 
 export default function ContactPage() {
   return (
     <main>
-      {/* Floating logo & tagline (fixed + clickable) */}
+      {/* Floating logo & tagline */}
       <Link
         href="/"
         aria-label="Go to home"
@@ -39,8 +40,13 @@ export default function ContactPage() {
           <h2 className="text-3xl font-semibold text-white">Get in touch</h2>
 
           <div className="grid md:grid-cols-2 gap-8">
+
+            {/* Left Column */}
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#37CC97] transition-colors">
-              <h3 className="text-xl font-semibold text-white mb-4">Contact Details</h3>
+              <h3 className="text-xl font-semibold text-white mb-4">
+                Contact Details
+              </h3>
+
               <div className="space-y-3">
                 <p>
                   <span className="text-gray-400">Email: </span>
@@ -51,6 +57,7 @@ export default function ContactPage() {
                     sales@techsmithconsulting.com
                   </a>
                 </p>
+
                 <p>
                   <span className="text-gray-400">Phone: </span>
                   <a
@@ -60,30 +67,34 @@ export default function ContactPage() {
                     1+(601) 565-6970
                   </a>
                 </p>
-                <p>
-                  <span className="text-gray-400">Calendly: </span>
-                  <a
-                    className="underline hover:no-underline hover:text-[#37CC97] transition-colors"
-                    href="/contact#book"
-                  >
-                    Book a 20-minute consultation
-                  </a>
-                </p>
               </div>
             </div>
 
+            {/* RIGHT COLUMN — Calendly */}
             <div
               id="book"
               className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-[#37CC97] transition-colors"
             >
-              <h3 className="text-xl font-semibold text-white mb-4">Request a Consultation</h3>
-              <p className="text-sm text-gray-400">
-                (Coming soon) Inline booking or contact form will appear here.
-              </p>
+              <h3 className="text-xl font-semibold text-white mb-4">
+                Request a Consultation
+              </h3>
+
+              {/* Calendly Inline Widget */}
+              <div
+                className="calendly-inline-widget"
+                data-url="https://calendly.com/d/ctgc-6mr-n53?background_color=1a1a1a&text_color=ffffff&primary_color=00ff4f"
+                style={{ minWidth: "320px", height: "700px" }}
+              />
             </div>
           </div>
         </div>
       </section>
+
+      {/* Calendly Script Loader */}
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+      />
     </main>
   );
 }
