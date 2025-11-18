@@ -2,6 +2,44 @@
 
 import { useEffect, useRef } from "react";
 
+const CALENDLY_SRC = "https://assets.calendly.com/assets/external/widget.js";
+let calendlyLoader: Promise<void> | null = null;
+
+function loadCalendlyScript(): Promise<void> {
+  if (calendlyLoader) return calendlyLoader;
+
+  calendlyLoader = new Promise<void>((resolve) => {
+    // Already loaded
+    if (typeof window !== "undefined" && (window as any).Calendly) {
+      resolve();
+      return;
+    }
+
+    if (typeof document === "undefined") {
+      resolve();
+      return;
+    }
+
+    const existing = document.querySelector(`script[src="${CALENDLY_SRC}"]`) as HTMLScriptElement | null;
+    const script = existing ?? document.createElement("script");
+
+    const finish = () => resolve();
+
+    if (!existing) {
+      script.src = CALENDLY_SRC;
+      script.async = true;
+      script.addEventListener("load", finish, { once: true });
+      document.body.appendChild(script);
+    } else if ((window as any).Calendly) {
+      finish();
+    } else {
+      existing.addEventListener("load", finish, { once: true });
+    }
+  });
+
+  return calendlyLoader;
+}
+
 interface CalendlyInlineProps {
   url: string;
   minWidth?: number;
@@ -14,51 +52,28 @@ export default function CalendlyInline({
   height = 700,
 }: CalendlyInlineProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const initializedRef = useRef(false);
 
   useEffect(() => {
     let canceled = false;
 
-    const initWidget = () => {
-      if (canceled || !containerRef.current || initializedRef.current) return;
+    const init = async () => {
+      await loadCalendlyScript();
+      if (canceled || !containerRef.current) return;
+
+      // Clear any existing injected markup before re-init.
+      containerRef.current.innerHTML = "";
       const Calendly = (window as typeof window & { Calendly?: { initInlineWidget?: (opts: { url: string; parentElement: HTMLElement }) => void } }).Calendly;
       Calendly?.initInlineWidget?.({
         url,
         parentElement: containerRef.current,
       });
-      initializedRef.current = true;
     };
 
-    // If Calendly script already loaded (e.g., due to client-side navigation), init immediately.
-    if (typeof window !== "undefined" && (window as any).Calendly) {
-      initWidget();
-      return () => {
-        canceled = true;
-        initializedRef.current = false;
-        if (containerRef.current) containerRef.current.innerHTML = "";
-      };
-    }
-
-    // Otherwise, inject script and init on load.
-    const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]') as HTMLScriptElement | null;
-    const script = existingScript ?? document.createElement("script");
-    if (!existingScript) {
-      script.src = "https://assets.calendly.com/assets/external/widget.js";
-      script.async = true;
-      document.body.appendChild(script);
-    }
-    if (script.onload === null) {
-      script.onload = () => initWidget();
-    } else {
-      // If the script already loaded earlier, initialize immediately.
-      if ((window as any).Calendly) initWidget();
-    }
+    void init();
 
     return () => {
       canceled = true;
-      initializedRef.current = false;
       if (containerRef.current) containerRef.current.innerHTML = "";
-      script.onload = null;
     };
   }, [url]);
 
