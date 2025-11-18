@@ -65,9 +65,8 @@ export default function CalendlyInline({
   return (
     <div
       ref={containerRef}
-      className="calendly-inline-widget"
+      className="calendly-inline-container"
       style={{ minWidth: `${minWidth}px`, height }}
-      data-url={url}
     />
   );
 }
