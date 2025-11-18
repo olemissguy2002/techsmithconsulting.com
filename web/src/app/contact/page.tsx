@@ -79,7 +79,7 @@ export default function ContactPage() {
                 Request a Consultation
               </h3>
               <p className="text-sm text-gray-400 mb-4">
-                Pick a 20-minute slot to talk AI assistants, cloud migration, or a tailored web build.
+                Pick a 30-minute slot to talk AI assistants, cloud migration, or a tailored web build.
                 You’ll get an invite with a call link automatically.
               </p>
 
