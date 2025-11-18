@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";   // <-- Needed for Calendly
 import PageHeroVideo from "@/components/PageHeroVideo";
+import CalendlyInline from "@/components/CalendlyInline";
 
 export default function ContactPage() {
   return (
@@ -84,21 +84,15 @@ export default function ContactPage() {
               </p>
 
               {/* Calendly Inline Widget */}
-              <div
-                className="calendly-inline-widget"
-                data-url="https://calendly.com/d/ctgc-6mr-n53?background_color=1a1a1a&text_color=ffffff&primary_color=00ff4f"
-                style={{ minWidth: "320px", height: "700px" }}
+              <CalendlyInline
+                url="https://calendly.com/d/ctgc-6mr-n53?background_color=1a1a1a&text_color=ffffff&primary_color=00ff4f"
+                minWidth={320}
+                height={700}
               />
             </div>
           </div>
         </div>
       </section>
-
-      {/* Calendly Script Loader */}
-      <Script
-        src="https://assets.calendly.com/assets/external/widget.js"
-        strategy="lazyOnload"
-      />
     </main>
   );
 }
