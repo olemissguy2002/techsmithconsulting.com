@@ -14,17 +14,19 @@ export default function CalendlyInline({
   height = 700,
 }: CalendlyInlineProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const initializedRef = useRef(false);
 
   useEffect(() => {
     let canceled = false;
 
     const initWidget = () => {
-      if (canceled || !containerRef.current) return;
+      if (canceled || !containerRef.current || initializedRef.current) return;
       const Calendly = (window as typeof window & { Calendly?: { initInlineWidget?: (opts: { url: string; parentElement: HTMLElement }) => void } }).Calendly;
       Calendly?.initInlineWidget?.({
         url,
         parentElement: containerRef.current,
       });
+      initializedRef.current = true;
     };
 
     // If Calendly script already loaded (e.g., due to client-side navigation), init immediately.
@@ -32,18 +34,30 @@ export default function CalendlyInline({
       initWidget();
       return () => {
         canceled = true;
+        initializedRef.current = false;
+        if (containerRef.current) containerRef.current.innerHTML = "";
       };
     }
 
     // Otherwise, inject script and init on load.
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    script.onload = () => initWidget();
-    document.body.appendChild(script);
+    const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]') as HTMLScriptElement | null;
+    const script = existingScript ?? document.createElement("script");
+    if (!existingScript) {
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    if (script.onload === null) {
+      script.onload = () => initWidget();
+    } else {
+      // If the script already loaded earlier, initialize immediately.
+      if ((window as any).Calendly) initWidget();
+    }
 
     return () => {
       canceled = true;
+      initializedRef.current = false;
+      if (containerRef.current) containerRef.current.innerHTML = "";
       script.onload = null;
     };
   }, [url]);
