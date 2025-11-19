@@ -1,12 +1,10 @@
 export const dynamic = "force-static";
 export const runtime = "nodejs";
 export const revalidate = false;
-export const dynamicParams = false;
 
-export function generateStaticParams() {
-  // No static params; we don't publish dynamic TTS playback in static export builds.
-  return [];
-}
+// Satisfy static export by providing an empty static params list.
+export const dynamicParams = false;
+export const generateStaticParams = () => [];
 
 export async function GET(_req: Request, context: { params: Promise<{ sid: string }> }) {
   return new Response(
