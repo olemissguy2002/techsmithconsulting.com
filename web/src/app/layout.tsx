@@ -2,37 +2,38 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
+import { ENABLE_AI_PORTFOLIO } from "@/lib/env";
+import SiteChatbot from "@/components/SiteChatbot";
 import Footer from "@/components/Footer";
-import ChatWidget from "@/components/ChatWidget";
-
-
-const SITE_NAME = "TechSmith Consulting";
-const CANONICAL_HOST = "https://techsmithconsulting.com";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(CANONICAL_HOST),
-  title: { default: SITE_NAME, template: `%s · ${SITE_NAME}` },
-  description: "Cloud, DevSecOps, and release management consulting.",
-  alternates: { canonical: "/" },
-  openGraph: { siteName: SITE_NAME, type: "website", url: "/" },
-  manifest: "/manifest.json",
-  icons: {
-    apple: "/apple-touch-icon.png",
-    icon: "/android-chrome-192x192.png",
-  },
+  title: "TechSmith Consulting",
+  description: "AI, Cloud, DevSecOps, and Automation consulting.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
-      <body className="min-h-screen antialiased bg-black text-white">
+    <html lang="en" className="h-full">
+      <body className="min-h-screen bg-black text-white">
+        {/* Global top nav */}
         <Nav />
-       
-        {children}
-        <ChatWidget />
+
+        {/* Page content */}
+        <main>{children}</main>
+
+        {/* Staging/dev-only chatbot, hidden in production */}
+        {ENABLE_AI_PORTFOLIO && (
+          <div className="fixed bottom-4 right-4 z-40">
+            <SiteChatbot />
+          </div>
+        )}
+
         <Footer />
       </body>
     </html>
   );
 }
-
