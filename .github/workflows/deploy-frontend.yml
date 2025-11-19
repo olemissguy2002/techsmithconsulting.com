@@ -1,0 +1,96 @@
+name: Deploy Frontend to S3/CloudFront (prod + staging)
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+
+jobs:
+  deploy-prod:
+    name: Deploy to PROD (techsmithconsulting.com)
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (PROD)
+        env:
+          NEXT_PUBLIC_ENV: production
+          # Leave API base empty for now; prod AI endpoints not live yet.
+          NEXT_PUBLIC_API_BASE_URL: ""
+        run: |
+          npm run build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Sync build output to PROD S3
+        run: |
+          aws s3 sync ./.next s3://${{ secrets.PROD_S3_BUCKET }} \
+            --delete \
+            --acl private
+
+      - name: Invalidate PROD CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.PROD_CF_DISTRIBUTION_ID }} \
+            --paths "/*"
+
+  deploy-staging:
+    name: Deploy to STAGING (staging.techsmithconsulting.com)
+    if: github.ref == 'refs/heads/staging'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (STAGING)
+        env:
+          NEXT_PUBLIC_ENV: staging
+          # Staging can point at your future fast AI backend when ready.
+          NEXT_PUBLIC_API_BASE_URL: https://api-staging.techsmithconsulting.com
+        run: |
+          npm run build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Sync build output to STAGING S3
+        run: |
+          aws s3 sync ./.next s3://${{ secrets.STAGE_S3_BUCKET }} \
+            --delete \
+            --acl private
+
+      - name: Invalidate STAGING CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.STAGE_CF_DISTRIBUTION_ID }} \
+            --paths "/*"
