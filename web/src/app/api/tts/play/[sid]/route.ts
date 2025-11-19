@@ -2,9 +2,9 @@ export const dynamic = "force-static";
 export const runtime = "nodejs";
 export const revalidate = false;
 
-// Satisfy static export by providing an empty static params list.
+// Satisfy static export by providing a stub param.
 export const dynamicParams = false;
-export function generateStaticParams() { return []; }
+export function generateStaticParams() { return [{ sid: "placeholder" }]; }
 
 export async function GET(_req: Request, context: { params: Promise<{ sid: string }> }) {
   return new Response(
