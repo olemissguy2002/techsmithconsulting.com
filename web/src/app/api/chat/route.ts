@@ -1,6 +1,6 @@
 // Static export: prevent dynamic routing and disable handler at build/export time.
 export const dynamic = "force-static";
-export const runtime = "edge";
+export const runtime = "nodejs";
 export const revalidate = false;
 
 import fs from "fs";

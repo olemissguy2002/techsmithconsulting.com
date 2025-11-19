@@ -1,5 +1,5 @@
 export const dynamic = "force-static";
-export const runtime = "edge";
+export const runtime = "nodejs";
 export const revalidate = false;
 
 export async function POST(req: Request) {
