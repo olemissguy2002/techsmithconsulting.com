@@ -2,6 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import PageHeroVideo from "@/components/PageHeroVideo";
 
+type CloudSection = {
+  heading?: string;
+  bullets: string[];
+};
+
+type CloudCategory = {
+  title: string;
+  sections: CloudSection[];
+};
+
 const focusAreas = [
   {
     title: "Landing zones & migrations",
@@ -17,7 +27,7 @@ const focusAreas = [
   },
 ];
 
-const cloudOfferings = [
+const cloudOfferings: CloudCategory[] = [
   {
     title: "Strategy & Readiness",
     sections: [
@@ -176,12 +186,12 @@ export default function CloudServicesPage() {
               <li key={category.title} className="space-y-2">
                 <p className="text-xl font-semibold text-white">{category.title}</p>
                 <div className="space-y-3">
-                  {category.sections.map((section) => (
-                    <div key={`${category.title}-${section.heading ?? "general"}`} className="space-y-1">
+                  {category.sections.map((section, idx) => (
+                    <div key={`${category.title}-${section.heading ?? idx}`} className="space-y-1">
                       {section.heading && <p className="font-semibold text-white">{section.heading}</p>}
                       <ul className="list-disc pl-6 space-y-1">
                         {section.bullets.map((bullet) => (
-                          <li key={`${category.title}-${section.heading ?? "general"}-${bullet}`} className="text-gray-300">
+                          <li key={`${category.title}-${section.heading ?? idx}-${bullet}`} className="text-gray-300">
                             {bullet}
                           </li>
                         ))}
