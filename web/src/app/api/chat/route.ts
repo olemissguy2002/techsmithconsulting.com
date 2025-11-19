@@ -1,9 +1,7 @@
-const IS_STATIC_EXPORT =
-  (process.env.NEXT_PUBLIC_ENV ?? "development") === "production" ||
-  (process.env.NEXT_PUBLIC_ENV ?? "development") === "staging";
-export const dynamic = IS_STATIC_EXPORT ? "force-static" : "force-dynamic";
-export const runtime = IS_STATIC_EXPORT ? "edge" : "nodejs";
-export const revalidate = IS_STATIC_EXPORT ? false : undefined;
+// Static export: prevent dynamic routing and disable handler at build/export time.
+export const dynamic = "force-static";
+export const runtime = "edge";
+export const revalidate = false;
 
 import fs from "fs";
 import path from "path";
@@ -90,12 +88,10 @@ try {
 // --------------------------------------------------------------
 
 export async function POST(req: Request) {
-  if (IS_STATIC_EXPORT) {
-    return new Response(
-      JSON.stringify({ error: "Chat API is disabled in static export." }),
-      { status: 503, headers: { "Content-Type": "application/json" } }
-    );
-  }
+  return new Response(
+    JSON.stringify({ error: "Chat API is disabled in static export." }),
+    { status: 503, headers: { "Content-Type": "application/json" } }
+  );
 
   try {
     const body = (await req.json()) as IncomingBody;
