@@ -1,8 +1,5 @@
-const IS_STATIC_EXPORT =
-  (process.env.NEXT_PUBLIC_ENV ?? "development") === "production" ||
-  (process.env.NEXT_PUBLIC_ENV ?? "development") === "staging";
-export const dynamic = IS_STATIC_EXPORT ? "force-static" : "force-dynamic";
-export const revalidate = IS_STATIC_EXPORT ? false : undefined;
+export const dynamic = "force-static";
+export const revalidate = false;
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -11,12 +8,10 @@ export function generateStaticParams() {
 }
 
 export async function GET(_req: Request, context: { params: Promise<{ sid: string }> }) {
-  if (IS_STATIC_EXPORT) {
-    return new Response(
-      JSON.stringify({ error: "TTS playback API is disabled in static export." }),
-      { status: 503, headers: { "Content-Type": "application/json" } }
-    );
-  }
+  return new Response(
+    JSON.stringify({ error: "TTS playback API is disabled in static export." }),
+    { status: 503, headers: { "Content-Type": "application/json" } }
+  );
 
   const { sid } = await context.params;
   const backend = process.env.TTS_BACKEND_BASE || "http://localhost:7860";
