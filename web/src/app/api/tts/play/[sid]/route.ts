@@ -3,9 +3,8 @@ export const runtime = "nodejs";
 export const revalidate = false;
 
 // Satisfy static export by providing an empty static params list.
-export function generateStaticParams() {
-  return [];
-}
+export const dynamicParams = false;
+export function generateStaticParams() { return []; }
 
 export async function GET(_req: Request, context: { params: Promise<{ sid: string }> }) {
   return new Response(
