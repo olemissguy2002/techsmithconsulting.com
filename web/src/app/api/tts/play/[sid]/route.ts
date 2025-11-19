@@ -1,4 +1,5 @@
 export const dynamic = "force-static";
+export const runtime = "nodejs";
 export const revalidate = false;
 export const dynamicParams = false;
 
