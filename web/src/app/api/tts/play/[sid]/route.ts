@@ -4,7 +4,9 @@ export const revalidate = false;
 
 // Satisfy static export by providing an empty static params list.
 export const dynamicParams = false;
-export const generateStaticParams = () => [];
+export function generateStaticParams() {
+  return [];
+}
 
 export async function GET(_req: Request, context: { params: Promise<{ sid: string }> }) {
   return new Response(
