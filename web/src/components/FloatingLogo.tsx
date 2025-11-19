@@ -1,4 +1,5 @@
 import Link from "next/link";
+import logo from "@/../public/FullLogoTransparent.png";
 
 export default function FloatingLogo() {
   return (
@@ -8,10 +9,10 @@ export default function FloatingLogo() {
       className="group fixed top-4 md:top-6 left-4 md:left-6 z-[60] flex items-center gap-4 opacity-100 hover:opacity-70 transition-opacity duration-500 pointer-events-auto"
     >
       <img
-        src="/FullLogoTransparent.png"
+        src={logo.src}
         alt="TechSmith Consulting logo"
-        width={800}
-        height={320}
+        width={logo.width}
+        height={logo.height}
         loading="lazy"
         decoding="async"
         className="w-auto h-48 object-contain"
