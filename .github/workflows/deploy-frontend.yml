@@ -25,14 +25,13 @@ jobs:
         working-directory: ./web
         run: npm ci
 
-      - name: Build & export (PROD)
+      - name: Build (PROD)
         env:
           NEXT_PUBLIC_ENV: production
           NEXT_PUBLIC_API_BASE_URL: ""
         working-directory: ./web
         run: |
           npm run build
-          npx next export
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -41,9 +40,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Sync static export to PROD S3
+      - name: Sync build output to PROD S3
         run: |
-          aws s3 sync ./web/out s3://${{ secrets.PROD_S3_BUCKET }} \
+          aws s3 sync ./web/.next s3://${{ secrets.PROD_S3_BUCKET }} \
             --delete \
             --acl private
 
@@ -71,14 +70,13 @@ jobs:
         working-directory: ./web
         run: npm ci
 
-      - name: Build & export (STAGING)
+      - name: Build (STAGING)
         env:
           NEXT_PUBLIC_ENV: staging
           NEXT_PUBLIC_API_BASE_URL: https://api-staging.techsmithconsulting.com
         working-directory: ./web
         run: |
           npm run build
-          npx next export
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -87,9 +85,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Sync static export to STAGING S3
+      - name: Sync build output to STAGING S3
         run: |
-          aws s3 sync ./web/out s3://${{ secrets.STAGE_S3_BUCKET }} \
+          aws s3 sync ./web/.next s3://${{ secrets.STAGE_S3_BUCKET }} \
             --delete \
             --acl private
 
