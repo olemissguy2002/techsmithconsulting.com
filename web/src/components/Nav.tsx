@@ -2,9 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import { ENABLE_AI_PORTFOLIO } from "@/lib/env";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -26,17 +24,7 @@ export default function Nav() {
       ].join(" ")}
     >
       <nav className="mx-auto w-full max-w-7xl px-4 md:px-6">
-        <div className="flex w-full items-center justify-between py-2">
-          <Link href="/">
-            <Image
-              src="/FullLogoTransparent.png"
-              alt="TechSmith Consulting logo"
-              width={180}
-              height={72}
-              priority
-              className="h-12 w-auto"
-            />
-          </Link>
+        <div className="flex w-full items-center justify-end py-0">
           {/* Desktop links (right-justified) */}
           <div className="hidden md:flex items-center gap-6 lg:gap-7">
             <Link href="/services" className="text-sm lg:text-base text-white hover:text-[#37CC97] transition">
@@ -45,13 +33,9 @@ export default function Nav() {
             <Link href="/case-studies" className="text-sm lg:text-base text-white hover:text-[#37CC97] transition">
               Case Studies
             </Link>
-
-            {ENABLE_AI_PORTFOLIO && (
-              <Link href="/ai-portfolio" className="text-sm lg:text-base text-white hover:text-[#37CC97] transition">
-                AI Portfolio
-              </Link>
-            )}
-
+            {/* <Link href="/ai-portfolio" className="text-sm lg:text-base text-white hover:text-[#37CC97] transition">
+              AI Portfolio
+            </Link> */}
             <Link href="/about" className="text-sm lg:text-base text-white hover:text-[#37CC97] transition">
               About
             </Link>
@@ -110,17 +94,13 @@ export default function Nav() {
               >
                 Case Studies
               </Link>
-
-              {ENABLE_AI_PORTFOLIO && (
-                <Link
-                  href="/ai-portfolio"
-                  className="text-base text-white hover:text-[#37CC97] transition"
-                  onClick={() => setOpen(false)}
-                >
-                  AI Portfolio
-                </Link>
-              )}
-
+              {/* <Link
+                href="/ai-portfolio"
+                className="text-base text-white hover:text-[#37CC97] transition"
+                onClick={() => setOpen(false)}
+              >
+                AI Portfolio
+              </Link> */}
               <Link
                 href="/about"
                 className="text-base text-white hover:text-[#37CC97] transition"
