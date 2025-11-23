@@ -27,6 +27,9 @@ export default function Nav() {
         <div className="flex w-full items-center justify-end py-0">
           {/* Desktop links (right-justified) */}
           <div className="hidden md:flex items-center gap-6 lg:gap-7">
+            <Link href="/" className="text-sm lg:text-base text-white hover:text-[#37CC97] transition">
+              Home
+            </Link>
             <Link href="/services" className="text-sm lg:text-base text-white hover:text-[#37CC97] transition">
               Services
             </Link>
@@ -80,6 +83,13 @@ export default function Nav() {
         {open && (
           <div className="md:hidden">
             <div className="mt-2 mb-3 flex flex-col items-end gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4">
+              <Link
+                href="/"
+                className="text-base text-white hover:text-[#37CC97] transition"
+                onClick={() => setOpen(false)}
+              >
+                Home
+              </Link>
               <Link
                 href="/services"
                 className="text-base text-white hover:text-[#37CC97] transition"
