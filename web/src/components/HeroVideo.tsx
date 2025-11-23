@@ -1,6 +1,7 @@
 // web/src/components/HeroVideo.tsx
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 export default function HeroVideo() {
@@ -59,18 +60,18 @@ export default function HeroVideo() {
         </p>
 
         <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
-          <a
+          <Link
             href="/services"
             className="px-4 py-2 sm:px-5 sm:py-3 rounded-xl border border-white/80 text-white hover:bg-white hover:text-black transition text-sm sm:text-base"
           >
             Explore services
-          </a>
-          <a
+          </Link>
+          <Link
             href="/contact"
             className="px-4 py-2 sm:px-5 sm:py-3 rounded-xl border border-white/80 text-white hover:bg-white hover:text-black transition text-sm sm:text-base"
           >
             Book a consultation
-          </a>
+          </Link>
         </div>
       </div>
     </section>
