@@ -33,9 +33,9 @@ export default function ContactPage() {
                   <span className="text-gray-400">Email: </span>
                   <a
                     className="underline hover:no-underline hover:text-[#37CC97] transition-colors"
-                    href="mailto:sales@techsmithconsulting.com"
+                    href="mailto:sales@darylsmithconsulting.com"
                   >
-                    sales@techsmithconsulting.com
+                    sales@darylsmithconsulting.com
                   </a>
                 </p>
 

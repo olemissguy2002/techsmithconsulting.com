@@ -19,8 +19,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://techsmithconsulting.com",
-        "https://www.techsmithconsulting.com",
+        "https://darylsmithconsulting.com",
+        "https://www.darylsmithconsulting.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],

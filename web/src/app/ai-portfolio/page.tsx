@@ -38,7 +38,7 @@ export default function AiPortfolioPage() {
       <PageHeroVideo
         folder="AI Portfolio"
         title="AI Portfolio"
-        subtitle="Live prototypes and proof-of-concept experiences demonstrating TechSmith Consulting’s applied AI capabilities."
+        subtitle="Live prototypes and proof-of-concept experiences demonstrating Daryl Smith Consulting’s applied AI capabilities."
       />
 
       <section className="container mx-auto px-6 md:px-10 lg:px-16 py-12 md:py-16 space-y-10 text-gray-200">

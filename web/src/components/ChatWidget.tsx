@@ -113,7 +113,7 @@ export default function ChatWidget() {
       <button
         onClick={() => setOpen((v) => !v)}
         className="fixed bottom-6 right-6 z-50 rounded-full bg-indigo-600 text-white px-4 py-3 shadow-lg hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-        aria-label="Open TechSmith Assistant"
+        aria-label="Open Daryl Smith Consulting Assistant"
       >
         {open ? "×" : "Chat"}
       </button>
@@ -123,7 +123,7 @@ export default function ChatWidget() {
         <div className="fixed bottom-20 right-6 z-50 w-96 max-h-[70vh] rounded-2xl bg-gray-900 text-gray-100 shadow-2xl border border-gray-800 flex flex-col">
           <div className="p-3 border-b border-gray-800 flex items-center justify-between">
             <div>
-              <div className="font-semibold text-sm">TechSmith Assistant</div>
+              <div className="font-semibold text-sm">Daryl Smith Consulting Assistant</div>
               <div className="text-xs text-gray-400">
                 Ask about AI builds, cloud migration & hosting, or web presence.
               </div>

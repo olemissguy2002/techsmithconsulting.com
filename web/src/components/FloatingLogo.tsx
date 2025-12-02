@@ -8,8 +8,8 @@ export default function FloatingLogo() {
       className="group fixed top-4 md:top-6 left-4 md:left-6 z-[60] flex items-center gap-4 opacity-100 hover:opacity-70 transition-opacity duration-500 pointer-events-none md:pointer-events-auto"
     >
       <img
-        src="/TechSmith-Logo-Transparent_800w.png?v=20251119"
-        alt="TechSmith Consulting logo"
+        src="/Daryl_Smith_Consulting_Logo.png"
+        alt="Daryl Smith Consulting logo"
         width={800}
         height={320}
         loading="lazy"
