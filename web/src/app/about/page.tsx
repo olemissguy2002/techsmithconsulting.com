@@ -40,7 +40,7 @@ export default function AboutPage() {
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 space-y-3 hover:border-[#37CC97] transition-colors">
-              <h3 className="text-xl font-semibold text-white">Why TechSmith Consulting</h3>
+              <h3 className="text-xl font-semibold text-white">Why Daryl Smith Consulting</h3>
               <p className="text-gray-300 leading-relaxed">
                 We translate AI/ML, Cloud, and Automation principles into measurable outcomes—lowering risk, improving visibility,
                 and boosting release velocity for mission-critical systems.

@@ -83,7 +83,7 @@ export default function Page() {
       <PageHeroVideo
         folder="AI Portfolio/tts"
         title="Text-to-Speech Studio"
-        subtitle="Prototype custom voices safely in the browser, powered by TechSmith Consulting’s Chatterbox stack."
+        subtitle="Prototype custom voices safely in the browser, powered by Daryl Smith Consulting’s Chatterbox stack."
         fullScreen={false}
       />
 
@@ -130,7 +130,7 @@ export default function Page() {
                   onChange={(e) => onTextChange(e.target.value)}
                   rows={6}
                   className="w-full rounded-2xl border border-white/15 bg-black/40 p-4 text-white placeholder:text-gray-500 focus:border-[#37CC97] focus:outline-none transition"
-                  placeholder="Hello from TechSmith Consulting..."
+                  placeholder="Hello from Daryl Smith Consulting..."
                 />
               </div>
 

@@ -1,6 +1,6 @@
 ## Text-to-Speech (TTS) Application
 
-This repository contains a two-part TTS experience for TechSmith Consulting:
+This repository contains a two-part TTS experience for Daryl Smith Consulting:
 
 - `tts-backend/`: a FastAPI service that streams requests to the Chatterbox TTS model and returns generated WAV files.
 - `web/`: a Next.js client that drives the UI, calls the backend via API routes, and plays synthesized audio in the browser.
@@ -71,7 +71,7 @@ Session metadata is kept in-memory. Restarting the process clears active session
    # edit .env.local if your backend does not run on localhost:7860
    ```
    Environment variables:
-   - `NEXT_PUBLIC_TTS_API_BASE` – origin for API requests (defaults to `http://localhost:7860` in development, `https://api.techsmithconsulting.com` in production).
+   - `NEXT_PUBLIC_TTS_API_BASE` – origin for API requests (defaults to `http://localhost:7860` in development, `https://api.darylsmithconsulting.com` in production).
 2. Install dependencies and start the dev server:
    ```bash
    npm install
@@ -95,7 +95,7 @@ The production backend image is built from `tts-backend/Dockerfile.web`:
 # make sure cb-tts:cpu exists locally (docker load or docker build your base)
 docker build \
   --file tts-backend/Dockerfile.web \
-  --tag techsmith-tts-backend:latest \
+  --tag darylsmith-tts-backend:latest \
   tts-backend
 ```
 
@@ -114,7 +114,7 @@ The reference deployment below places the backend behind an HTTPS endpoint (ECS 
 ### 1. Provision AWS resources
 
 - **Networking**: VPC with at least two public subnets (or private + NAT if running ECS Fargate).
-- **Certificates**: Request/validate an ACM cert for `api.techsmithconsulting.com` and for the frontend domain (e.g., `app.techsmithconsulting.com`).
+- **Certificates**: Request/validate an ACM cert for `api.darylsmithconsulting.com` and for the frontend domain (e.g., `app.darylsmithconsulting.com`).
 - **ECR**: Create a repository called `tts-backend`.
 - **S3 (frontend)**: Create a bucket (e.g., `tts-frontend-artifacts`) if you plan to deploy static assets manually or via CI/CD.
 
@@ -143,7 +143,7 @@ If you do not already have `cb-tts:cpu` in your local Docker cache, build or pul
 4. Set environment variables as needed (e.g., `OMP_NUM_THREADS`, `MKL_NUM_THREADS`).
 5. Attach an IAM role that lets the task send logs to CloudWatch.
 6. Create a service (desired count 1+) and place it in private subnets with a NAT gateway or in public subnets with a security group that only allows the ALB to reach port 7860.
-7. Point `api.techsmithconsulting.com` (Route 53) to the ALB and attach the ACM certificate for HTTPS termination.
+7. Point `api.darylsmithconsulting.com` (Route 53) to the ALB and attach the ACM certificate for HTTPS termination.
 
 ### 4. Alternative: Run the backend on EC2
 
@@ -197,7 +197,7 @@ You have two AWS-friendly options:
          paths:
            - web/node_modules/**/*
      ```  
-   - Set the Amplify environment variable `NEXT_PUBLIC_TTS_API_BASE=https://api.techsmithconsulting.com`.  
+   - Set the Amplify environment variable `NEXT_PUBLIC_TTS_API_BASE=https://api.darylsmithconsulting.com`.  
    - Amplify provisions a CloudFront distribution + S3 bucket automatically.
 
 2. **S3 + CloudFront (manual)**  
@@ -212,8 +212,8 @@ You have two AWS-friendly options:
 
 ### 6. Wire the frontend to the backend
 
-- Update DNS so `app.techsmithconsulting.com` (frontend) and `api.techsmithconsulting.com` (backend) both resolve via HTTPS.
-- Ensure CORS on the backend includes both domains (`server.py` already whitelists `https://techsmithconsulting.com` and `https://www.techsmithconsulting.com` – add Amplify/CloudFront domains if different).
+- Update DNS so `app.darylsmithconsulting.com` (frontend) and `api.darylsmithconsulting.com` (backend) both resolve via HTTPS.
+- Ensure CORS on the backend includes both domains (`server.py` already whitelists `https://darylsmithconsulting.com` and `https://www.darylsmithconsulting.com` – add Amplify/CloudFront domains if different).
 - Validate that the frontend `.env.production` matches the deployed backend URL before running `npm run build`.
 
 ### 7. Observability and maintenance

@@ -7,7 +7,7 @@ import SiteChatbot from "@/components/SiteChatbot";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "TechSmith Consulting",
+  title: "Daryl Smith Consulting",
   description: "AI, Cloud, DevSecOps, and Automation consulting.",
 };
 
@@ -23,7 +23,7 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-title" content="TechSmith Consulting" />
+        <meta name="apple-mobile-web-app-title" content="Daryl Smith Consulting" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className="min-h-screen bg-black text-white">

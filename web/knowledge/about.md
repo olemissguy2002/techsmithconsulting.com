@@ -9,7 +9,7 @@ With over 20 years in the tech industry, we have expertice in AI/ML, DevOps, Dev
 Toolkit
 
 AWS, GitHub, CodeQL, SBOMs, Dependabot, Splunk, automated policy gates, and modern CI/CD. Governance that accelerates delivery rather than slowing it down.
-Why TechSmith Consulting
+Why Daryl Smith Consulting
 
 We translate AI/ML, Cloud, and Automation principles into measurable outcomes—lowering risk, improving visibility, and boosting release velocity for mission-critical systems.
 

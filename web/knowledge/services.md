@@ -9,7 +9,7 @@ Whether you need an embedded tiger team or a turnkey outcome, every engagement p
 Service Line
 # AI & Machine Learning Services
 
-TechSmith Consulting helps organizations explore and adopt AI safely and pragmatically, including:
+Daryl Smith Consulting helps organizations explore and adopt AI safely and pragmatically, including:
 
 - AI-powered demos and proofs-of-concept such as:
   - Text-to-speech experiences (e.g., Chatterbox TTS).
