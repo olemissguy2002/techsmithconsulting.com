@@ -2,6 +2,11 @@ import PageHeroVideo from "@/components/PageHeroVideo";
 import FloatingLogo from "@/components/FloatingLogo";
 import Link from "next/link";
 
+export const metadata = {
+  title: "AI Portfolio | Daryl Smith Consulting",
+  description: "Explore live AI prototypes and proof-of-concept experiences from Daryl Smith Consulting’s applied AI practice.",
+};
+
 const projects = [
   {
     title: "Chatterbox TTS Studio",

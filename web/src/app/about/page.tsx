@@ -2,7 +2,10 @@ import Link from "next/link";
 import PageHeroVideo from "@/components/PageHeroVideo";
 import FloatingLogo from "@/components/FloatingLogo";
 
-export const metadata = { title: "About" };
+export const metadata = {
+  title: "About | Daryl Smith Consulting",
+  description: "Learn how Daryl Smith Consulting blends AI/ML, DevSecOps, and automation expertise to modernize mission-critical programs across government, healthcare, and regulated industries.",
+};
 
 export default function AboutPage() {
   return (

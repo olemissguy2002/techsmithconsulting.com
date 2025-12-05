@@ -2,6 +2,11 @@ import Link from "next/link";
 import PageHeroVideo from "@/components/PageHeroVideo";
 import FloatingLogo from "@/components/FloatingLogo";
 
+export const metadata = {
+  title: "NASA Case Study | Daryl Smith Consulting",
+  description: "How Daryl Smith Consulting built a distributed content delivery system for NASA to move mission telemetry, science data, and immersive training assets worldwide.",
+};
+
 const tracks = [
   {
     title: "Global content mesh",

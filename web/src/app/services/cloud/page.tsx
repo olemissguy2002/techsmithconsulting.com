@@ -2,6 +2,11 @@ import Link from "next/link";
 import PageHeroVideo from "@/components/PageHeroVideo";
 import FloatingLogo from "@/components/FloatingLogo";
 
+export const metadata = {
+  title: "Cloud Services | Daryl Smith Consulting",
+  description: "Landing zones, migrations, platform engineering, and SRE support with policy-as-code guardrails for regulated cloud workloads.",
+};
+
 type CloudSection = {
   heading?: string;
   bullets: string[];

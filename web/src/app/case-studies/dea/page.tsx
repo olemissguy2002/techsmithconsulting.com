@@ -2,6 +2,11 @@ import Link from "next/link";
 import PageHeroVideo from "@/components/PageHeroVideo";
 import FloatingLogo from "@/components/FloatingLogo";
 
+export const metadata = {
+  title: "DEA Case Study | Daryl Smith Consulting",
+  description: "How Daryl Smith Consulting hardened DEA investigative platforms with DevSecOps pipelines, policy-as-code guardrails, and secure release governance.",
+};
+
 const pillars = [
   {
     title: "Policy-as-code",

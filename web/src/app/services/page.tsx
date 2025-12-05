@@ -2,6 +2,11 @@ import Link from "next/link";
 import PageHeroVideo from "@/components/PageHeroVideo";
 import FloatingLogo from "@/components/FloatingLogo";
 
+export const metadata = {
+  title: "Services | Daryl Smith Consulting",
+  description: "Affordable AI, Cloud, DevSecOps, and Release Management solutions for SMB, healthcare, and federal clients.",
+};
+
 const serviceTiles = [
   {
     title: "AI & Machine Learning",

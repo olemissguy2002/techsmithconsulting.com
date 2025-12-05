@@ -3,6 +3,11 @@ import PageHeroVideo from "@/components/PageHeroVideo";
 import CalendlyInline from "@/components/CalendlyInline";
 import FloatingLogo from "@/components/FloatingLogo";
 
+export const metadata = {
+  title: "Contact | Daryl Smith Consulting",
+  description: "Book a consultation or reach Daryl Smith Consulting to discuss AI assistants, cloud migration, DevSecOps, or automated web builds tailored to your team.",
+};
+
 export default function ContactPage() {
   return (
     <main>

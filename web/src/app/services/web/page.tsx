@@ -2,6 +2,11 @@ import Link from "next/link";
 import PageHeroVideo from "@/components/PageHeroVideo";
 import FloatingLogo from "@/components/FloatingLogo";
 
+export const metadata = {
+  title: "Web Services | Daryl Smith Consulting",
+  description: "Custom Next.js and React experiences with design systems, SEO, accessibility, and managed hosting for high-performing web presence.",
+};
+
 const capabilities = [
   "Brand workshops, UX research, and component-driven design systems",
   "Custom Next.js / React builds with CMS or headless commerce integrations",

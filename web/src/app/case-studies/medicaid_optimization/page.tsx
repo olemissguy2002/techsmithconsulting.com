@@ -2,6 +2,11 @@ import Link from "next/link";
 import PageHeroVideo from "@/components/PageHeroVideo";
 import FloatingLogo from "@/components/FloatingLogo";
 
+export const metadata = {
+  title: "Medicaid Optimization Case Study | Daryl Smith Consulting",
+  description: "How Daryl Smith Consulting improved Medicaid eligibility performance with load testing, observability, and automation to boost throughput and cut costs.",
+};
+
 const highlights = [
   {
     title: "Bottleneck discovery",

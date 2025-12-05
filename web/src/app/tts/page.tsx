@@ -5,6 +5,11 @@ import Link from "next/link";
 import PageHeroVideo from "@/components/PageHeroVideo";
 import FloatingLogo from "@/components/FloatingLogo";
 
+export const metadata = {
+  title: "Text-to-Speech | Daryl Smith Consulting",
+  description: "Prototype custom voices safely in the browser using Daryl Smith Consulting’s Chatterbox TTS stack with session-isolated synthesis.",
+};
+
 const API_BASE =
   process.env.NEXT_PUBLIC_TTS_API_BASE || "http://localhost:3000/api/tts";
 

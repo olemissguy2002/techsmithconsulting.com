@@ -2,6 +2,11 @@ import Link from "next/link";
 import PageHeroVideo from "@/components/PageHeroVideo";
 import FloatingLogo from "@/components/FloatingLogo";
 
+export const metadata = {
+  title: "AI Services | Daryl Smith Consulting",
+  description: "Responsible AI strategy, copilots, agents, RAG, data pipelines, and evaluation frameworks delivered with governance for regulated teams.",
+};
+
 const offerings = [
   "Responsible AI assessments, governance frameworks, and policy alignment",
   "Domain-tuned copilots, agents, and retrieval augmented generation (RAG)",

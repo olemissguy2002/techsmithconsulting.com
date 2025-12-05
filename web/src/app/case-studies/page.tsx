@@ -2,6 +2,11 @@ import Link from "next/link";
 import PageHeroVideo from "@/components/PageHeroVideo";
 import FloatingLogo from "@/components/FloatingLogo";
 
+export const metadata = {
+  title: "Case Studies | Daryl Smith Consulting",
+  description: "Selected AI, cloud, and automation engagements where Daryl Smith Consulting delivered measurable outcomes in regulated environments.",
+};
+
 const studies = [
   {
     title: "Medicaid Optimization Program",
